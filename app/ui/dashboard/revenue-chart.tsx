@@ -1,21 +1,13 @@
-import { generateYAxis } from "@/app/lib/utils";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-import { lusitana } from "@/app/ui/fonts";
-import { Revenue } from "@/app/lib/definitions";
+// /app/ui/dashboard/revenue-chart.tsx
+import { generateYAxis } from '@/app/lib/utils';
+import { CalendarIcon } from '@heroicons/react/24/outline';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchRevenue } from '@/app/lib/data';
 
-// This component is representational only.
-// For data visualization UI, check out:
-// https://www.tremor.so/
-// https://www.chartjs.org/
-// https://airbnb.io/visx/
+export default async function RevenueChart() {
+  const revenue = await fetchRevenue();
 
-export default async function RevenueChart({
-  revenue,
-}: {
-  revenue: Revenue[];
-}) {
   const chartHeight = 350;
-
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {
@@ -27,9 +19,8 @@ export default async function RevenueChart({
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Recent Revenue
       </h2>
-
       <div className="rounded-xl bg-gray-50 p-4">
-        <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 md:gap-4">
+        <div className="sm:grid-cols-12 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 h-[410px]">
           <div
             className="mb-6 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
             style={{ height: `${chartHeight}px` }}
