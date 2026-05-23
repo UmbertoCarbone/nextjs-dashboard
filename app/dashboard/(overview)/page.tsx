@@ -1,5 +1,10 @@
 // /app/dashboard/(overview)/page.tsx
+import { Metadata } from 'next';
 import CardWrapper from '@/app/ui/dashboard/cards';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
